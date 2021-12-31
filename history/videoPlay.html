@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0,  minimum-scale=1.0" />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="x5-orientation" content="portrait">
+    <title>微课堂</title>
+    <!-- 公共类库 -->
+    <link href="../css/flexible.css" rel="stylesheet" type="text/css">
+    <link href="../css/share.plugin.css" rel="stylesheet" type="text/css">
+    <link href="../css/animate.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="./css/dropload.css">
+    <link href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/videoPlay.css" />
+    <link rel="stylesheet" href="../css/minirefresh.min.css">
+    <style>
+        .line2 {
+            -webkit-box-orient: vertical;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app" v-cloak>
+        <div class="playerBox" style="position: relative;">
+            <div class="pause shows">
+                <img src="images/yiji_shouye_shipinbofang@2x.png" alt="">
+            </div>
+
+            <div class="video_tip_box" v-if="isTrySeeOver" @click="onBuy">
+                <div class="video_tip_text">
+                    试看结束，<span>付费</span>后可查看完整视频。
+                </div>
+            </div>
+            <div class="video_tip_box" v-else-if="isShowTrySee">
+                <div class="video_tip_text">
+                    该视频为付费视频，可试看<span>{{ trySeeTime }}分钟</span>
+                </div>
+            </div>
+
+            <div id="player" style="opacity: 1;">
+
+            </div>
+            <div class="share_icon_play" style="display: none;">
+                <img src="./img/share_icon_white.png" alt="">
+            </div>
+            <div class="share_icon">
+                <img src="./img/share_blue.png" alt="">
+            </div>
+        </div>
+        <!--小广告-->
+        <div class="adware-min" v-show="bannerBottom.length>0">
+            <div class="swiper-container2">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide" v-for="item in bannerBottom">
+                        <div style="height: 100%;" :data-data="JSON.stringify(item)">
+                            <img :data-data="JSON.stringify(item)" :src="item.imageUrl">
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="swiper-pagination" slot="pagination">
+                </div> -->
+            </div>
+            <span class="closeap" @click="closeLittleAp()"></span>
+        </div>
+        <ul class="nav_content">
+            <li class="nav_item" :class="{'active': navStatus == 'course'}" @click="selectNav('course',0)">课程</li>
+            <li class="nav_item" :class="{'active': navStatus == 'catalog'}" @click="selectNav('catalog',1)">
+                目录(<template v-if="courseData.videoSubList">{{ courseData.videoSubList.length }}</template>)</li>
+            <li class="nav_item" :class="{'active': navStatus == 'question'}" @click="selectNav('question',2)">
+                问答({{ commentNumber }})</li>
+        </ul>
+
+        <div class="content_box">
+            <div class="course_detail" v-show="navStatus == 'course'">
+                <div class="padding_box">
+                    <h3 class="course_title">
+                        <!--tradeType 判断是否为收费课程  -->
+                        <template v-if="user.userid != courseData.userId">
+                            <img v-if="courseDetail.tradeType == 0"
+                                src="./img/weiketang_shipinxiangqing_mianfei@2x.png">
+                            <template
+                                v-if="courseDetail.tradeType == 1 && courseDetail.isDiscount == 1 && courseDetail.authorityType > 0">
+                                <img v-if="courseDetail.authorityType == 1" src="./img/yinpaihuiyuan_1@2x.png" />
+                                <img v-if="courseDetail.authorityType == 2" src="./img/jinpaihuiyuan_1@2x.png" />
+                                <img v-if="courseDetail.authorityType == 3" src="./img/bojinhuiyuan_1@2x.png" />
+                                <img v-if="courseDetail.authorityType == 4" src="./img/zanshihuiyuan_1@2x.png" />
+                                <img v-if="courseDetail.authorityType == 5" src="./img/bossmianfei_1@2x.png" />
+                                <img v-if="courseDetail.authorityType == 6" src="./img/jinglimianfei_1@2x.png" />
+                                <img v-if="courseDetail.authorityType == 7" src="./img/vip_mianfei_1@2x.png" />
+                            </template>
+                        </template>
+                        <img v-else-if="!isLogin &&  courseDetail.tradeType == 0 "
+                            src="./img/weiketang_shipinxiangqing_mianfei@2x.png">
+                        {{ courseDetail.title }}
+                    </h3>
+                    <div class="special_box" @click="onZhuanti" v-if="zhuantiText">
+                        <span class="zhuant_text" v-html="zhuantiText"></span>
+                        <img src="./img/zhuanti_jiantou.png" alt="">
+                    </div>
+                    <div class="play_info">
+                        <span>{{ watchAmountData }}</span> <span class="border">|</span>
+                        <span>总时长：{{ courseDetail.totalTime }}</span>
+                    </div>
+                    <!--tradeType 判断是否为收费课程  -->
+                    <div class="pay_content" v-if="courseDetail.tradeType == 1" @click="onBuy">
+                        <!-- isDiscount 判断是否参与优惠 -->
+                        <template v-if="courseDetail.isDiscount == 1">
+                            <div class="pay_price">
+                                <span>
+                                    {{ courseDetail.payMethod}}
+                                </span>
+                                <del v-if="courseDetail.authorityType > 0">{{ courseDetail.originalPrice }}</del>
+                            </div>
+                        </template>
+                        <template v-else>
+                            <div class="pay_price">
+                                <span>
+                                    {{ courseDetail.payMethod}}
+                                </span>
+                            </div>
+                        </template>
+                        <!-- 判断为自己发布的课程 -->
+                        <div class="pay_right" v-if="isLogin && isLogin == courseData.userId">
+                            <div>我发布的</div>
+                        </div>
+                        <div class="pay_right"
+                            v-else-if="courseDetail.authorityType == 5 || courseDetail.authorityType == 6 || (courseDetail.authorityType == 7 && courseDetail.isDiscount == 1)">
+                            <div>立即查看</div>
+                        </div>
+                        <!-- 判断是购买 -->
+                        <template v-else-if="courseDetail.ispay == 1">
+                            <div class="pay_right">
+                                <div>已购买</div>
+                            </div>
+                        </template>
+                        <div class="pay_right" v-else>
+                            <div>立即购买</div>
+                            <img src="./img/course_jiantou.png" />
+                        </div>
+                    </div>
+                </div>
+                <div class="couponBox" @click="onShowCouponModel" v-if="couponList.length">
+                    <ul>
+                        <template v-for="(item,index) in couponList">
+                            <li class="useCouponItem" v-if="index < 3">
+                                <template v-if="item.full > 0">
+
+                                    <template v-if="item.type == 1">
+                                        满{{item.full}}减{{ item.reduction}}
+                                    </template>
+                                    <template v-else-if="item.type == 2">
+                                        满{{item.full}}打{{item.discount}}折
+                                    </template>
+                                </template>
+
+                                <template v-else-if="item.full == 0">
+                                    <template v-if="item.type == 1">
+                                        {{ item.reduction}}元无门槛
+                                    </template>
+                                    <template v-else-if="item.type == 2">
+                                        {{ item.discount}}折无门槛
+                                    </template>
+                                </template>
+
+                            </li>
+                        </template>
+                    </ul>
+                    <div class="rightImg"></div>
+                </div>
+                <!--  -->
+                <div class="discount_text"
+                    v-if="courseDetail.tradeType == 1 && courseDetail.isDiscount == 0 && courseDetail.authorityType > 0  && user.userid != courseData.userId">
+                    {{ courseDetail.discountsTips }}
+                </div>
+                <div class="vip_box"
+                    v-if="courseDetail.tradeType == 1 && courseDetail.isDiscount == 1 && (isLogin && isLogin != courseData.userId)">
+                    <img v-if="courseDetail.authorityType == 0" src="./img/chengweihuiyuanxiangyouhui@2x.png" />
+                    <img v-if="courseDetail.authorityType == 1" src="./img/yinpaihuiyuan_2@2x.png" />
+                    <img v-if="courseDetail.authorityType == 2" src="./img/jinpaihuiyuan_2@2x.png" />
+                    <img v-if="courseDetail.authorityType == 3" src="./img/bojinhuiyuan_2@2x.png" />
+                    <img v-if="courseDetail.authorityType == 4" src="./img/zanshihuiyuan_2@2x.png" />
+                    <img v-if="courseDetail.authorityType == 5" src="./img/bossmianfei_2@2x.png" />
+                    <img v-if="courseDetail.authorityType == 6" src="./img/jinglimianfei_2@2x.png" />
+                    <img v-if="courseDetail.authorityType == 7" src="./img/vip_mianfei_2@2x.png" />
+                </div>
+                <div class="padding_box">
+                    <p class="teacher_title">课程讲师</p>
+                </div>
+                <ul class="teacher_list">
+                    <template v-for="(item,index) in courseDetail.lecturerList">
+                        <li class="teacher_item" v-if="index < 3 || showAllTeacher" @click="goTeacherDetail(item)">
+                            <img class="teacher_cover" :src="item.image" alt="">
+                            <div class="teacher_item_content">
+                                <p class="teacher_name">
+                                    {{ item.name }}
+                                    <img class="teacher_icon" src="./img/weiketang_shipinxiangqing_jiangshi@2x.png">
+                                </p>
+                                <p class="teacher_dec">
+                                    {{ item.company }} {{ item.post}}
+                                </p>
+                            </div>
+                            <img class="arrow" src="./img/f2.png" alt="">
+                        </li>
+                    </template>
+                    <template v-if="courseDetail.lecturerList && courseDetail.lecturerList.length > 3">
+                        <li class="show_all_teacher" v-if="showAllTeacher" @click="showAllTeacher = !showAllTeacher">
+                            收起<img src="./img/up_jiantou.png"></li>
+                        <li class="show_all_teacher" @click="showteacherList" v-else>
+                            查看全部{{ courseDetail.lecturerList.length }}位讲师</li>
+                    </template>
+
+                </ul>
+
+                <ul class="tag_list" v-if="courseDetail.labelList && courseDetail.labelList.length">
+                    <li class="tag_item" v-for="item in  courseDetail.labelList" @click="downloadTip">
+                        {{ item.name }}
+                    </li>
+                </ul>
+                <div class="division_box"></div>
+                <template v-if="courseDetail.documentList && courseDetail.documentList.length">
+                    <p class="course_file_title">
+                        课程资料
+                    </p>
+                    <ul class="course_file_list">
+                        <li class="course_file_item" v-for="item in courseDetail.documentList"
+                            @click="onDocument(item.documentUrl)">
+                            <img class="file_icon" src="./img/weiketang_ziliao@3x.png" alt="">
+                            <div class="file_name">
+                                {{ item.documentName }}
+                            </div>
+                            <img class="arrow" src="./img/f2.png" alt="">
+                        </li>
+                    </ul>
+                </template>
+                <div class="padding_box">
+                    <p class="teacher_title">课程详情
+                        <!-- <span>点击图片放大</span>-->
+                        <img src="./img/zhibo_xiangqingye_tupianfangda@2x.svg" />
+                    </p>
+                </div>
+                <div class="detail_content" v-html="courseDetail.introduce"></div>
+            </div>
+            <div class="catalog_box" v-show="navStatus == 'catalog'">
+                <ul class="catalog_list">
+                    <li class="catalog_item" v-for="(item,index) in courseData.videoSubList"
+                        @click="playVideoItem(item)">
+                        <div class="chapter">
+                            <span>课时{{ index + 1}}</span>
+                            <div class="play_btn" :class="{'active': item.id == currentVideoId }">
+
+                                <template v-if="item.id == currentVideoId">播放中</template>
+                                <template v-else>播放</template>
+                            </div>
+                        </div>
+                        <div class="video_name">{{ item.title}}</div>
+                        <div class="video_time">时长：{{ item.longtime }}</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="question" id="question" v-show="navStatus == 'question'">
+                <ul class="question_list">
+                    <li class="question_item" v-for="item in commentList">
+                        <img v-if="item.userImageUrl" :src="item.userImageUrl" alt="" class="cover">
+                        <img v-else src="./img/50-50@3x.png" alt="" class="cover">
+                        <div class="question_item_content">
+                            <div class="question_item_content_header">
+                                <span class="name">{{ item.username }}</span>
+                                <div class="zan" @click="downloadTip">
+                                    <img src="./img/weiketangxiangqing_dianzan@3x.png" alt="">赞
+                                </div>
+                            </div>
+                            <div class="question_item_content_time">{{ item.createdOn }}</div>
+                            <div class="question_item_content_text">
+                                {{ item.content }}
+                            </div>
+
+                            <div class="btn_list">
+                                <div class="left_btn">
+                                    <span @click="downloadTip">打赏</span>
+                                    <span @click="downloadTip">回复</span>
+                                </div>
+                                <!-- <span class="delete_btn" @click="downloadTip">
+                                    删除
+                                </span> -->
+                            </div>
+                            <ul class="reply_list" v-if="item.replyList.length">
+                                <li class="reply_item" v-for="val in item.replyList">
+                                    <span>{{ val.username }}：</span>{{ val.content }}
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="more_special_model" v-show="showZhuantiList">
+            <div class="special_content">
+                <img class="colse" src="./img/close.png" @click="showZhuantiList = false">
+                <p class="model_title">选择专题</p>
+                <div class="tip_text">该课程所属多个专题，请选择查看：</div>
+                <div class="courseList">
+                    <div class="course_item" v-for="item in courseDetail.traniedList" @click="goZhuantiDetail(item.id)">
+                        <div class="course_title line3"> {{ item.name }}</div>
+                        <div class="course_info">
+                            <p>点击查看详情</p>
+                            <img src="./img/course_jiantou.png" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="couponModel" v-show="showCouponModel" @click="showCouponModel = false">
+            <div class="couponModelContent" @click.stop="">
+                <p class="couponModelTitle">领取优惠券</p>
+                <div class="couponList">
+                    <div class="expertListBox minirefresh-wrap" id="expertListBox">
+                        <div class="minirefresh-scroll">
+                            <div>
+                                <div class="couponItem" v-for="(item,index) in couponList">
+                                    <div class="base_info">
+                                        <div class="money">
+                                            <div v-if="item.receive == 2" class="limit_top">
+                                                {{ item.receiveUserInfo }}
+                                            </div>
+                                            <div class="money_number">
+                                                <template v-if="item.type == 1">
+                                                    <span>￥</span>{{ item.reduction }}
+                                                </template>
+                                                <template v-else>
+                                                    {{item.discount }}折
+                                                </template>
+                                            </div>
+                                            <div class="use_tip">
+                                                <template v-if="item.full == 0">
+                                                    无门槛
+                                                </template>
+                                                <template v-else>
+                                                    满{{ item.full }}元可用
+                                                </template>
+                                                <template v-if="item.maxDiscounReductiont">
+                                                    <br>
+                                                    最高减{{item.maxDiscounReductiont }}元
+                                                </template>
+                                            </div>
+                                        </div>
+                                        <div class="couponItemContent">
+                                            <!-- receive:已领取 end 已抢光 useed 已使用 -->
+                                            <div v-if="item.useStatus == 1" class="cornerMarker receive"></div>
+                                            <div v-else-if="item.useStatus == 2" class="cornerMarker useed"></div>
+                                            <div v-else-if="item.useStatus == 3" class="cornerMarker end"></div>
+
+                                            <div class="couponTitle">
+                                                <div class="icon">
+                                                    <span> {{ item.name}}</span>
+                                                </div>
+                                                {{ item.couponInfo }}
+                                            </div>
+                                            <div class="use_time">
+                                                有效期：{{ item.validPeriod }}
+                                            </div>
+                                            <div class="operation">
+                                                <div class="operationRemark" :class="{'active': remarkId == item.id}"
+                                                    :style="{'visibility': item.remarks ? 'visibility' : 'hidden' }"
+                                                    @click="showRemark(item.id)">
+                                                    <template v-if="remarkId == item.id">收起备注</template>
+                                                    <template v-else>查看备注</template>
+                                                </div>
+                                                <!-- "useStatus":" 0:未领取 1:已领取 2:已使用 3:已领光 -->
+                                                <div class="receiveBtn" v-if="item.useStatus == 0"
+                                                    @click="onReceive(item)">点击领取
+                                                </div>
+                                                <div v-else-if="item.useStatus == 1" class="availableBtn"
+                                                    @click="useShop(item)">可用商品</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="remark" :class="{'show': remarkId == item.id}">
+                                        <div class="remark-lable">备注：</div>
+                                        <div class="remark-text line2">
+                                            {{ item.remarks }}</div>
+                                        <div class="remarkbg">
+                                            <div class="bgLeft"></div>
+                                            <div class="bgRight"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="closeBtnBox">
+                    <div class="closeBtn" @click="onHideCouponModel">
+                        关闭
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="couponModelTip" v-show="couponModel">
+            <!-- app app专享  authentication：认证用户  researcher：研究员 -->
+            <div class="modelContent">
+                <img class="closeBtn" @click="hideCouponModel" src="./img/close_icon.png" />
+                <p class="closeTitle">温馨提示</p>
+                <div class="contentText" v-if="couponModel == 'authentication'">该券为好医工APP认证用户专享，您还没有完成身份认证，无法领取该券。</div>
+                <div class="contentText" v-else-if="couponModel == 'researcher'">该券为好医工APP研究员用户专享，您还不是研究员身份，无法领取该券。
+                </div>
+                <div class="contentText" v-else-if="couponModel == 'app'">该券为好医工APP端用户专享，请打开APP领取该券。</div>
+                <div class="buttonList researcherBtn" v-if="couponModel == 'researcher'">
+                    <div class="cancelBtn" @click="hideCouponModel">取消</div>
+                    <a class="defaultBtn" href="../researcher/becomeResearcher.html">如何成为研究员</a>
+                </div>
+                <div class="buttonList" v-else>
+                    <div class="cancelBtn" @click="hideCouponModel">取消</div>
+                    <div class="defaultBtn" v-if="couponModel == 'authentication'" @click="onAuthentication">去认证</div>
+                    <div class="defaultBtn" v-else @click="onOpenApp">打开APP</div>
+                </div>
+            </div>
+
+        </div>
+
+
+        <div v-if="showOnline" class="whiteBG">
+            <div class="mask">
+                <div class="whiteBox">
+                    <h2>友情提示</h2>
+                    <p>该内容已下架</p>
+                    <div>
+                        <span @click='clooseOnline' class="clooseOnline">关 闭</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+<script src="../js/getUrl.js?0426"></script>
+<script src="../js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="./js/dropload.js"></script>
+<!-- <script src="../js/tcplayer/TcPlayer-2.3.2.js"></script> -->
+<script src="https://imgcache.qq.com/open/qcloud/video/vcplayer/TcPlayer-2.3.3.js" charset="utf-8"></script>
+<!-- <script src="./js/Tcplayer.js"></script> -->
+<script src="../js/minirefresh.min.js"></script>
+<script src="../js/rem.js"></script>
+<script src="../js/swiper.min.js"></script>
+<script src="../js/layer_mobile/layer.js"></script>
+<script src="https://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+<script src="../js/fastClick.js"></script>
+<script src="../js/h5_header.js" type="text/javascript" charset="utf-8"></script>
+<!---->
+<script src="../js/encryption/zaes.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/encryption/mode-ecb.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/encryption/commonEncrypDecryp.js" type="text/javascript" charset="utf-8"></script>
+<script src="../js/encryption/jsonData.js" type="text/javascript" charset="utf-8"></script>
+<!---->
+<script src="./../plugin/loading.plugin.js" charset="utf-8"></script>
+<script src="./../js/lodash.min.js" charset="utf-8"></script>
+<script src="./../js/javascript-state-machine.js"></script>
+<script src="./../js/vue.min.js"></script>
+<script type="text/javascript" src="./js/videoPlay.js?t=12123123"></script>
+
+</html>
