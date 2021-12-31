@@ -1,0 +1,185 @@
+
+"{"method": "getVideoById_v45","userid": '10482',"token":"", "params": { "id": 1111}}"
+
+var keyStr = CryptoJS.enc.Latin1.parse("4590auf34567hilm2390noqrst890uyz");
+
+https://pro.haoyigong.com/server_pro/microClassroom!request.action
+
+
+https://getman.cn/?s=eb939281d7c14af8f481e34d86912e98
+
+var aesEncrypt = function(data) {
+    var sendData = CryptoJS.enc.Utf8.parse(data);
+    // console.log(sendData)
+    var encrypted = CryptoJS.AES.encrypt(sendData, keyStr, {
+        mode: CryptoJS.mode.ECB,
+        padding: CryptoJS.pad.Pkcs7
+    });
+    return encrypted;
+};
+
+
+//10482学海 //唐金迪25595 // 永晨 31276 //  金娜 70581 // 78797 d丁姐
+userid: '10482', //g_debugmode=0本地环境，固定userid
+token: ''
+
+
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6sen Py5XVdvavsQwCMBrTkgwsTMcfZGnTrpSn7dlIi9PO0
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6senynunaA1M5wOXbXES/SU8XgTMcfZGnTrpSn7dlIi9PO0
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6senyn6hpfN0FLEohttv6kxgYYWoI V6NAGgmicXVpGRxCv
+
+
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6sen44Q1/LlONeE7P/q2rRcNitWTItkaaLPZGVAqys0SsGe         3
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6sen44Q1/LlONeE7P/q2rRcNitWTItkaaLPZGVAqys0SsGe         3
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6sen7Q3ZbmcZs8CtVSWcZwU5xFWTItkaaLPZGVAqys0SsGe    2
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6sen7Q3ZbmcZs8CtVSWcZwU5xFWTItkaaLPZGVAqys0SsGe    2
+
+uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6senyPy bFeV sdx7wYqs6gp7DVRJDRy5dLh9/NaJpeUuOX      222
+
+
+
+"{"method": "getVideoById_v45","userid": '10482',"token":"", "params": { "id": 1111}}"
+var keyStr = CryptoJS.enc.Latin1.parse("4590auf34567hilm2390noqrst890uyz");
+mode: CryptoJS.mode.ECB,
+padding: CryptoJS.pad.Pkcs7
+U2FsdGVkX1/gKsNhgim/R0/yKtBAkUuMzwl70yM/Igy0AGKPQo9lsMfkdEbDSOFGTUcq2wNtbOvH5xrTfoyai4UaTRTe5+itBfkG9fJtv4dEooEhWdKLkPs9UiU3LbnR8dfS+ola0oiu0sBVKYgUuA==
+
+
+getUrl。js
+// 新加密方式
+function toDataNew(json) {
+    json.identity = g_identity;
+    if (!json.identity) {
+        json.identity = 1;
+    }
+    var data = JSON.stringify(json);
+    data = aesEncrypt(data);
+    var _data = {
+        'data': '' + data
+    }
+    _data = JSON.stringify(_data);
+    return _data;
+}
+
+
+
+
+<h3 class="course_title"><img src="./img/weiketang_shipinxiangqing_mianfei@2x.png"> <!---->
+                        【IFMBE-2021】新冠病毒疫苗与全球临床工程:&nbsp;我们如何提供帮助
+                    </h3>
+
+
+
+
+
+
+https://h5.haoyigong.com/vweb/microClass/videoPlay.html?id=3333
+
+https://video2.haoyigong.com/9c88564d93894ad4b6d4fb97dd7b3431/09fe4fd9d2584a5eac3863eacd41f077-6cd9f287cce2896cfbde3fc9fd7c4b5b-ld.m3u8
+
+
+
+
+data=uEFrG2GhYK3wy4iGu5FsPUK6gofOd0uo3RE3GCy2AIrrqnxxFkxEwMSdLSLbTgIFInKlecyCZbTIdkhBl6sen+Py5XVdvavsQwCMBrTkgwsTMcfZGnTrpSn7dlIi9PO0
+
+
+请求网址: https://pro.haoyigong.com/server_pro/microClassroom!request.action
+请求方法: POST
+状态代码: 200 
+远程地址: 101.200.197.215:443
+引荐来源网址政策: strict-origin-when-cross-origin
+
+result: {isComment: 0, ispay: 1, videoUserId1: "", isactive: 1, rewardNum: 0, cornerMark: "独家", discount: 1,…}
+alreadyPay: 0
+amount: 3
+attrDeptId: 917
+chatTime: ""
+cornerMark: "独家"
+count: 8
+course: {buyCode: "", ispay: 1, originalPrice: "¥0.0", traniedPrice: "", traniedList: [,…], discountsTips: "",…}
+authorityType: 0
+buyCode: ""
+...
+title: "【IFMBE-2021】新冠病毒疫苗与全球临床工程: 我们如何提供帮助"
+totalTime: "01:52:00"
+...
+
+initData() {
+    let _this = this;
+    var _url = user.urlMedical + "/server_pro/microClassroom!request.action";
+    var _data = {
+    "method": "getVideoById_v45",
+    "userid": user.userid,
+    "token": user.token,
+    "params": {
+        "id": _this._id
+    }
+};
+_ajax("post", _url, _data, true, function(res) {
+    if (res.status.code == '200') {
+        console.log(res.result)
+        _this.courseDetail = res.result.course;
+        _this.courseData = res.result;
+
+
+
+{"result":{"isComment":0,"ispay":1,"videoUserId1":"","isactive":1,"rewardNum":0,"cornerMark":"独家","discount":1,"type":2,"createdOn":"2021-02-02 08:48","shareNum":5,"payInCash":0,"videoSubList":[{"longtime":"00:09:00","size":-1,"trySee":0,"watchTime":0,"id":5375,"title":"Andrew Furman、Yadin David: Introduction","url":"http://video2.haoyigong.com/9c88564d93894ad4b6d4fb97dd7b3431/09fe4fd9d2584a5eac3863eacd41f077-6cd9f287cce2896cfbde3fc9fd7c4b5b-ld.m3u8","status":0},{"longtime":"00:18:00","size":-1,"trySee":0,"watchTime":0,"id":5376,"title":"Abigail Jones：创新生物制药行业对COVID-19疫苗信心开展的相关活动","url":"http://video2.haoyigong.com/cd89060d022045d2930a72f6fa09b813/eb351485b5e14998947c9450c8c9db29-bfa3b7461accf87e9240e5530ec6174a-ld.m3u8","status":0},{"longtime":"00:11:00","size":-1,"trySee":0,"watchTime":0,"id":5377,"title":"Marcus Lynch：疫苗的发展、模式和思考","url":"http://video2.haoyigong.com/680551943db549008e831ea0c3bee71b/e00d78b191a8451bb92e6ac5e2cfa612-939455d81e3f9bca03729efb003a0fc9-ld.m3u8","status":0},{"longtime":"00:14:00","size":-1,"trySee":0,"watchTime":0,"id":5378,"title":"Jonathan Gaev：美国疫苗供应及相关医疗设备","url":"http://video2.haoyigong.com/a3e32458d9f241528ce66875c1a339bc/3c4e73d417d34e86b2166ddb32084952-631f2f256b1633ca036c3ddb538001fb-ld.m3u8","status":0},{"longtime":"00:19:00","size":-1,"trySee":0,"watchTime":0,"id":5379,"title":"Michael Negri：以色列的疫苗生产和供应情况","url":"http://video2.haoyigong.com/7936d0df0947426cba84df5ce0b8b296/4d88e029a00344f3a689e120358a5b8f-22c6bc605e403a9c564723f11f59faae-ld.m3u8","status":0},{"longtime":"00:14:00","size":-1,"trySee":0,"watchTime":0,"id":5380,"title":"Nora Lucia Rodriguez：在拉丁美洲和加勒比国家，超冷链和供应/中低收入国家面临的挑战","url":"http://video2.haoyigong.com/3f21018922b84aa0aba9542a27339679/da91f54f43454839bbb8bd7b6d7acdd5-dea09767acb972f0feb3515e198ae05e-ld.m3u8","status":0},{"longtime":"00:14:00","size":-1,"trySee":0,"watchTime":0,"id":5381,"title":"Dan Clark：英国的监管与供应情况","url":"http://video2.haoyigong.com/4c543fc050a04a32a61e67c5e6daa6aa/e3bcbc877d4944ff9f201508be7c87b3-d01c2685d4aec8e12adbbb1a9bae555a-ld.m3u8","status":0},{"longtime":"00:13:00","size":-1,"trySee":0,"watchTime":0,"id":5382,"title":"Q&A","url":"http://video2.haoyigong.com/1093cb99a4544bf4ba2668798c677694/76753bcb0f804e69b8c0cc92d58437d0-d73403c1b81e868171c61dcecc2af230-ld.m3u8","status":0}],"detailImg":"","course":{"buyCode":"","ispay":1,"originalPrice":"¥0.0","traniedPrice":"","traniedList":[{"image":"http://file.haoyigong.com/server/upload/1584587184750.jpeg","packageSale":0,"payAmount":0,"payInCash":0,"name":"全球医工视角IFMBE国际临床工程部","id":181,"payInCode":0}],"discountsTips":"","isDiscount":"0","title":"【IFMBE-2021】新冠病毒疫苗与全球临床工程: 我们如何提供帮助","payAmount":0,"payInCash":0,"payMethod":"","id":3333,"tradeType":0,"traniedPriceios":"","image":"https://file.haoyigong.com/server/upload/1612226136897.jpg","introduce":"<p style=\"text-align: left;\"><img src=\"https://file.haoyigong.com/server/upload/ueditor/image/20210202/1612226896870004263.jpg\" title=\"1612226896870004263.jpg\" style=\"width:100%;height:auto\" alt=\"国际医学和生物工程联合会（IFMBE）简介_01.jpg\"/><img src=\"https://file.haoyigong.com/server/upload/ueditor/image/20210202/1612226907913035350.jpg\" title=\"1612226907913035350.jpg\" style=\"width:100%;height:auto\" alt=\"国际医学和生物工程联合会（IFMBE）简介_02.jpg\"/><\/p>","totalTime":"01:52:00","watchAmount":305,"pay":0,"authorityType":0,"isMyIssue":"0","payInCode":0,"labelList":[],"traniedTip":"点击查看同专题其他精彩课程","documentList":[{"documentUrl":"https://file.haoyigong.com/server/upload/weiketang/1615880504395.pdf","format":"pdf","id":38,"documentName":"【中英文课件】IFMBE 1月专题：美国疫苗供应及相关医疗设备 Jonathan A. Gaev","documentSize":"822226","createdOn":"2021-03-16 15:41:48.0"},{"documentUrl":"https://file.haoyigong.com/server/upload/weiketang/1616135914583.pdf","format":"pdf","id":42,"documentName":"【中英文课件】IFMBE 1月专题：英国的监管与供应情况 Dan Clark","documentSize":"3033887","createdOn":"2021-03-19 14:38:54.0"}],"lecturerList":[{"image":"https://file.haoyigong.com/server/upload/1596506722016.jpg","post":"","name":"国际临床工程","subscribeId":171,"company":"GCE杂志编辑部"},{"image":"http://file.haoyigong.com/server/upload/1585624207953.jpg","post":"Global CE Journal 主编、GCEA发起人","phone":"","introduce":"美国临床工程学会（ACCE）创始人及首任主席、美国FDA顾问委员会主席\n大卫博士致力于医疗工程管理、技术评估、法医工程、性能保证、产品开发以及法规审核等方面，至今调查过逾三百例医疗设备相关事故，并实施过世界上首次儿科远程医疗服务。大卫博士基于临床要求 、使用者能力及相关法规，首创并开展了世界领先的医疗设备管理策略和法律合规的业务流程。大卫博士在全球范围内培训医疗技术人才，提升技术管理水平，例如在资源匮乏的国家针对抗灾预案进行培训。","name":"Yadin David","subscribeId":"","company":"Global CE Journal 主编","id":470,"createdOn":""},{"image":"https://file.haoyigong.com/server/upload/1613626719187.png","post":"执行主任","phone":"","introduce":"ECRI, Clinical Excellence 执行主任","name":"Andrew Furman","subscribeId":"","company":"ECRI Clinical Excellence","id":1810,"createdOn":"2020-07-29 13:46:54.0"},{"image":"https://file.haoyigong.com/server/upload/1613626785070.png","post":"公关总监","phone":"","introduce":"国际药品制造商协会联合会IFPMA  公关总监","name":"Abigail Jones","subscribeId":"","company":"国际药品制造商协会联合会IFPMA","id":2384,"createdOn":"2021-02-02 09:08:59.0"},{"image":"https://file.haoyigong.com/server/upload/1613626904169.png","post":"高级经理","phone":"","introduce":"美国 ECRI国际工程\\设备评估 高级经理","name":"Jonathan Gaev","subscribeId":"","company":"ECRI国际工程\\设备评估","id":2385,"createdOn":"2021-02-02 09:09:36.0"},{"image":"https://file.haoyigong.com/server/upload/1613626962781.png","post":"副经理","phone":"","introduce":"Marcus Lynch 美国 ECRI Horizon Scanning 副经理","name":"Marcus Lynch","subscribeId":"","company":"ECRI Horizon Scanning","id":2386,"createdOn":"2021-02-02 09:09:56.0"},{"image":"https://file.haoyigong.com/server/upload/1613627029636.png","post":"Shamir Medical Center","phone":"","introduce":"以色列 Shamir Medical Center","name":"Michael Negri","subscribeId":"","company":"Shamir Medical Center","id":2387,"createdOn":"2021-02-02 09:10:36.0"},{"image":"https://file.haoyigong.com/server/upload/1613627120041.png","post":"顾问","phone":"","introduce":"美国 PAHO冷链管理 注射安全和注射器质量控制顾问","name":"Nora Lucia Rodriguez","subscribeId":"","company":"PAHO冷链管理 注射安全和注射器质量控制","id":2388,"createdOn":"2021-02-02 09:12:04.0"},{"image":"https://file.haoyigong.com/server/upload/1589340930816.jpg","post":"医疗技术中心临床工程服务部主任","phone":"","introduce":"Nottingham University Hospitals NHS Trust","name":"Dan Clark","subscribeId":"","company":"英国诺丁汉大学医院","id":1327,"createdOn":"2020-04-22 14:53:39.0"}]},"startTime":"","tip":"","id":3333,"limitLogin":1,"image":"https://file.haoyigong.com/server/upload/1612226136897.jpg","amount":3,"attrDeptId":917,"limitInapp":0,"isAudit":1,"userPay":0,"count":8,"chatTime":"","payOldamount":"","updatedOn":"2021-03-19 14:39","userId":12197,"payInCode":0,"videoTraniedId":-1,"favoriteNum":0,"isVirtual":0,"time":"","alreadyPay":0},"status":{"code":200,"message":"SUCCESS","systemTime":"2021-12-30 21:37:26.028"}}
+
+
+        引荐来源网址政策: strict-origin-when-cross-origin
+        access-control-allow-origin: *
+        content-language: zh-CN
+        content-length: 7967
+        content-type: application/json;charset=UTF-8
+        date: Thu, 30 Dec 2021 13:37:26 GMT
+        :authority: pro.haoyigong.com
+        :method: POST
+        :path: /server_pro/microClassroom!request.action
+        :scheme: https
+        accept: */*
+        accept-encoding: gzip, deflate, br
+        accept-language: zh-CN,zh;q=0.9
+        content-length: 133
+        content-type: application/x-www-form-urlencoded; charset=UTF-8
+        origin: https://h5.haoyigong.com
+        referer: https://h5.haoyigong.com/
+        sec-ch-ua: " Not A;Brand";v="99", "Chromium";v="96", "Google Chrome";v="96"
+        sec-ch-ua-mobile: ?0
+        sec-ch-ua-platform: "Windows"
+        sec-fetch-dest: empty
+        sec-fetch-mode: cors
+        sec-fetch-site: same-site
+        user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/96.0.4664.110 Safari/537.36
+
+
+
+
+
+"method": "getVideoById_v45","userid": 0,"token":"", "params": { "id": 1111}
+https://pro.haoyigong.com/server_pro/microClassroom!request.action
+
+
+https://getman.cn/?s=eb939281d7c14af8f481e34d86912e98
+
+
+
+
+console.log(user)
+VM3194:1 
+{urlBrand: 'https://web.haoyigong.com', urlFile: 'https://file.haoyigong.com', urlFile2: 'https://file2.haoyigong.com', urlVideo: 'https://video.haoyigong.com', urlGod: 'https://pay.haoyigong.com', …}
+identity: null
+im: "wss://im.haoyigong.com:8098"
+medicalDetail: "https://info.haoyigong.com"
+token: ""
+url: "https://data.haoyigong.com"
+urlApp: "https://app.haoyigong.com"
+urlBanner: "https://h5.haoyigong.com"
+urlBrand: "https://web.haoyigong.com"
+urlFile: "https://file.haoyigong.com"
+urlFile2: "https://file2.haoyigong.com"
+urlGod: "https://pay.haoyigong.com"
+urlMedical: "https://pro.haoyigong.com"
+urlOther: "https://other.haoyigong.com"
+urlQuestionnaire: "https://diaowen.haoyigong.com"
+urlVideo: "https://video.haoyigong.com"
+userid: 0
